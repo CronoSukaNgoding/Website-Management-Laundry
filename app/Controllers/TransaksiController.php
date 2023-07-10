@@ -14,17 +14,16 @@ class TransaksiController extends BaseController
         $biaya = $this->biaya->first();
         // dd($biaya);
         $jenis=$this->jenis->get()->getResult();
-        $pelanggan=$this->pelanggan->join('user','user.iduser = pelanggan.iduser')->where('role_id', 2)->get()->getResult();
-        $cekPemesanan = $this->pemesanan->where('status', 'Proses')->get()->getResult();
+        $cekPemesanan = $this->pemesanan->join('jenispakaian','pemesanan.jenis = jenispakaian.idjenispakaian')->where('status', 'Proses')->get()->getResult();
         // dd($cekPemesanan);
         $data=[
             'harga'=> $biaya,
             'dataTransaksi' => $dataTransaksi,
             'dataPemesanan' => $cekPemesanan,
-            'dataPelanggan'=> $pelanggan,
             'dataJenis' => $jenis,
             'title'=>'Transaksi'
         ];
+        // dd($data);
         return view('admin/transaksi',$data);
     }
     public function svTransaksi(){
@@ -49,7 +48,6 @@ class TransaksiController extends BaseController
                 'id' => 1,
                 'biaya_ambil' =>$this->request->getVar('biaya_ambil'),
                 'biaya_jemput' => $this->request->getVar('biaya_jemput'),
-                'harga_laundry' => $this->request->getVar('harga_laundry'),
             ];
             // dd($dataHarga);
             if($data != null){

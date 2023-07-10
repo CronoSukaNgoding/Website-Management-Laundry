@@ -16,7 +16,8 @@
               <th class="text-center">Tanggal Ambil</th>
               <th class="text-center">Tanggal Jemput</th>
               <th class="text-center">Jenis</th>
-              <th class="text-center">Berat (Kg)</th>
+              <th class="text-center">Status Biaya</th>
+              <th class="text-center">Berat (Kg/Potong)</th>
               <th class="text-center">Bayar</th>
               <th class="text-center">Ongkos Ambil</th>
               <th class="text-center">Ongkos Jemput</th>
@@ -36,6 +37,7 @@
               <td><?=$result->tgl_jemput?></td>
               <td><?=$result->tgl_ambil?></td>
               <td><?=$result->jenis?></td>
+              <td><?=$result->statusbiaya?></td>
               <td><?=$result->berat?></td>
               <td>Rp<?= number_format($result->total, 0, ',', '.') ?></td>
               <td>Rp<?= number_format($result->biaya_ambil, 0, ',', '.') ?></td>

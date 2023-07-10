@@ -1,6 +1,6 @@
 <?= $this->include('admin/template/header'); ?>
 <div class="row" ng-app="app" ng-controller="transaksiController">
-  <div class="col-md-4">
+  <div class="col-md-12">
     <div class="card card-warning">
       <div class="card-header">
         <h3 class="card-title">Input Transaksi</h3>
@@ -12,43 +12,53 @@
             <select name="kd_pemesanan" id="basicSelect" class="form-control">
               <option value="" selected>Pilih Kode Pemesanan</option>
               <?php foreach($dataPemesanan as $kode) : ?>
-              <option value="<?= $kode->id?>"><?= $kode->kd_pemesanan?></option>
+              <option value="<?= $kode->id?>"><?= $kode->kd_pemesanan?>, <?= $kode->jenis?>, <?= $kode->statusbiaya?>, <?= $kode->harga?></option>
               <?php endforeach;?>
             </select>
           </div>
-          <div class="input-group mb-3">
+          <div class="form-group floating-label-form-group">
+            <label for="jabatan">Jenis Laundry</label>
+            <select name="jenis" id="basicSelect" class="form-control">
+              <option value="" selected>Pilih Jenis Laundry</option>
+              <?php foreach($dataJenis as $kode) : ?>
+              <option value="<?= $kode->idjenispakaian?>"><?= $kode->jenis?>, <?= $kode->statusbiaya?>,
+                Rp<?= number_format($kode->harga, 0, ',', '.') ?></option>
+              <?php endforeach;?>
+            </select>
+          </div>
+          <div class="input-group mb-3 form-group floating-label-form-group">
             <label for="jabatan">Biaya Laundry</label>
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon2">Rp</span>
             </div>
-            <input type="text" class="form-control" value="<?=$harga->harga_laundry?>" placeholder="Biaya Antar"
+            <input type="text" class="form-control" value="" placeholder="masukan nominal sesuai harga pilihan diatas"
               name="harga_laundry" aria-label="Recipient's username" aria-describedby="basic-addon2">
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 form-group floating-label-form-group">
             <label for="jabatan">Biaya Ambil</label>
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon2">Rp</span>
             </div>
-            <input type="text" class="form-control" value="<?=$harga->biaya_ambil?>" placeholder="Biaya Antar"
-              name="biaya_ambil" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input type="text" class="form-control" value="" placeholder="Biaya Ambil" name="biaya_ambil"
+              aria-label="Recipient's username" aria-describedby="basic-addon2">
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 form-group floating-label-form-group">
             <label for="jabatan">Biaya Antar</label>
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon2">Rp</span>
             </div>
-            <input type="text" class="form-control" value="<?=$harga->biaya_jemput?>" placeholder="Biaya Antar"
-              name="biaya_jemput" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input type="text" class="form-control" value="" placeholder="Biaya Antar" name="biaya_jemput"
+              aria-label="Recipient's username" aria-describedby="basic-addon2">
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 form-group floating-label-form-group">
             <label for="jabatan">Berat</label>
             <input type="text" class="form-control" placeholder="Masukan berat dalam kilogram" name="berat"
               aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-              <span class="input-group-text" id="basic-addon2">Kg</span>
+              <span class="input-group-text" id="basic-addon2">Kg/Potong</span>
             </div>
           </div>
-          <div class="form-group row">
+          <div class="form-group floating-label-form-group">
             <label for="tgl_ambil" class="col-sm-4 col-form-label">Tanggal Antar</label>
             <div class="col-sm-8">
               <input type="date" class="form-control" name="tgl_ambil" id="tgl_ambil" ng-model="model.tgl_ambil"
@@ -63,18 +73,19 @@
             <input type="text" class="form-control" placeholder="Total Harga" name="total"
               aria-label="Recipient's username" aria-describedby="basic-addon2">
           </div>
-          
-
-
-        </div>
-        <div class="input-group mb-3">
-          <label for="jabatan">Total Harga</label>
-          <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon2">Rp</span>
+          <div class="input-group mb-3">
+            <label for="jabatan">Total Harga</label>
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2">Rp</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Total Harga" name="total_harga"
+              aria-label="Recipient's username" aria-describedby="basic-addon2">
           </div>
-          <input type="text" class="form-control" placeholder="Total Harga" name="total_harga"
-            aria-label="Recipient's username" aria-describedby="basic-addon2">
+
+
+
         </div>
+
         <div class="card-footer justify-content-between">
           <input type="submit" class="btn btn-primary btn-bg-gradient-x-blue-cyan" value="Simpan">
         </div>
@@ -96,6 +107,7 @@
             <th>Kode Pemesanan</th>
             <th>Nama</th>
             <th>Jenis</th>
+            <th>Status Biaya</th>
             <th>Berat</th>
             <th>Tanggal Antar</th>
             <th>Harga</th>
@@ -114,6 +126,7 @@
             <td><?= $result->kd_pemesanan?></td>
             <td><?=$result->nama?></td>
             <td><?=$result->jenis?></td>
+            <td><?=$result->statusbiaya?></td>
             <td><?=$result->berat?></td>
             <th><?=$result->tgl_ambil?></th>
             <td id="harga">

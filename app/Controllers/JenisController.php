@@ -18,10 +18,12 @@ class JenisController extends BaseController
         return view('admin/jenis',$data);
     }
     public function svJenis(){
+        $harga = $this->request->getVar('harga');
+        $intValue = (int) preg_replace('/[^0-9]/', '', $harga);
         $data = [
             'jenis'=> $this->request->getVar('jenis'),
-            'harga'=> 0,
-            'statusbiaya'=> 0,
+            'harga'=> $intValue,
+            'statusbiaya'=> $this->request->getVar('statusbiaya'),
             
         ];
         // dd($data);
@@ -37,8 +39,8 @@ class JenisController extends BaseController
         $data = [
             'idjenispakaian' => $id,
             'jenis'=> $this->request->getVar('jenis'),
-            'harga'=> 0,
-            'statusbiaya'=> 0,
+            'harga'=> $this->request->getVar('harga'),
+            'statusbiaya'=> $this->request->getVar('statusbiaya'),
             
         ];
         // dd($data);

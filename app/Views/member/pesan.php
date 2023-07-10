@@ -39,11 +39,10 @@
                         <select name="jenis" id="basicSelect" class="form-control">
                             <option value="" selected>Pilih Jenis Pakaian</option>
                             <?php foreach($dataJenis as $jenis) : ?>
-                            <option value="<?= $jenis->idjenispakaian?>"><?= $jenis->jenis?></option>
+                            <option value="<?= $jenis->idjenispakaian?>"><?= $jenis->jenis?>, <?=$jenis->statusbiaya?></option>
                             <?php endforeach;?>
                         </select>
                     </div>
-                    
                     <input type="submit" class="btn btn-primary btn-bg-gradient-x-blue-cyan" name="simpan"
 							value="Simpan">
                 </div>
@@ -63,6 +62,7 @@
                             <th style="width: 10px">No</th>
                             <th>Kode Pemesanan</th>
                             <th>Jenis</th>
+                            <th>Status Biaya</th>
                             <th>Tanggal Booking</th>
                             <th>status</th>
                         </tr>
@@ -76,7 +76,8 @@
                             <td><?=$no?></td>
                             <td><?=$result->kd_pemesanan?></td>
                             <td><?=$result->jenis?></td>
-                            <td><?= date('Y-m-d H:i:s', strtotime($result->created_at) + (2 * 3600)) ?></td>
+                            <td><?=$result->statusbiaya?></td>
+                            <td><?= $result->tglbuat?></td>
                             <td>
                                 <?php if($result->status == "Pending"):?>
                                         <span class="badge badge-pill badge-warning">

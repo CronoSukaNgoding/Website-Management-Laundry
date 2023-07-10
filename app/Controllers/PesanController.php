@@ -8,7 +8,7 @@ class PesanController extends BaseController
 {
     public function index()
     {
-        $cekPesanan = $this->pemesanan->join('jenispakaian','pemesanan.jenis = jenispakaian.idjenispakaian')->where('kd_pelanggan', $this->sesi->user_id)->get()->getResult();
+        $cekPesanan = $this->pemesanan->select('*, pemesanan.created_at as tglbuat')->join('jenispakaian','pemesanan.jenis = jenispakaian.idjenispakaian')->where('kd_pelanggan', $this->sesi->user_id)->get()->getResult();
         // dd($cekPesanan);
         $cekdatajenis = $this->jenis->get()->getResult();
         $data =[
