@@ -48,4 +48,13 @@ class PemesananController extends BaseController
             $e->getMessage();
         }
     }
+    public function delPesanan($id){
+        try{
+            $delPemesanan = $this->pemesanan->delete($id);
+            $this->sesi->setFlashdata('sukses-hapus','Data berhasil dihapus');
+            return redirect()->to('/admin/pemesanan');
+        }catch(\Exceptions $e){
+            $e->getMessage();
+        }
+    }
 }

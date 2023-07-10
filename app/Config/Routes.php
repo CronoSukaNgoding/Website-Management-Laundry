@@ -61,6 +61,8 @@ $routes->post('admin/pemesanan/editProses/(:num)','PemesananController::updateSt
 $routes->post('/transaksi','TransaksiController::svTransaksi');
 $routes->post('admin/pelanggan/edit/(:num)','PelangganController::updatePelanggan/$1');
 $routes->post('admin/pelanggan/delete/(:num)','PelangganController::delPelanggan/$1');
+$routes->post('admin/pemesanan/delete/(:num)','PemesananController::delPesanan/$1');
+
 
 
 /*

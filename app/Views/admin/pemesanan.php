@@ -2,6 +2,28 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card card-warning">
+      <?php if(session()->getFlashData("sukses-simpan")): ?>
+				<div class="alert alert-success alert-dismissible animated fadeInDown" id="feedback" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					 <?=session()->getFlashData("sukses-simpan")?>
+				</div>
+        <?php elseif(session()->getFlashData("sukses-edit")): ?>
+				<div class="alert alert-success alert-dismissible animated fadeInDown" id="feedback" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					 <?=session()->getFlashData("sukses-edit")?>
+				</div>
+			<?php elseif(session()->getFlashData("sukses-hapus")): ?>
+				<div class="alert alert-danger alert-dismissible animated fadeInDown" id="feedback" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<?=session()->getFlashData("sukses-hapus")?>
+				</div>
+			<?php endif; ?>
       <div class="card-header">
         <h3 class="card-title">Data Pemesanan</h3>
       </div>
@@ -47,8 +69,8 @@
                 <td><?= date('Y-m-d H:i:s', strtotime($result->tglBuat) + (7 * 3600)) ?></td>
                 <td><span class="badge badge-warning" style="color: black"><?=$result->status?></span></td>
                 <td>
-                  <a class="btn btn-danger btn-sm " onclick="cbModal(<?=$result->id?>)">
-                 <a class="btn btn-info btn-sm " onclick="cbModal1(<?=$result->id?>)">
+                 
+                 <button class="btn btn-info btn-sm " onclick="cbModal1(<?=$result->id?>)"><ion-icon name="create-outline"></ion-icon></button>
 							  </td>
               </tr>
                 <?php
@@ -87,8 +109,8 @@
                 <td><?= date('Y-m-d H:i:s', strtotime($result->tglBuat) + (7 * 3600)) ?></td>
                 <td><span class="badge badge-info" style="color: white"><?=$result->status?></span></td>
                 <td>
-                  <a class="btn btn-danger btn-sm " onclick="cbModal(<?=$result->id?>)">
-                 <a class="btn btn-info btn-sm " onclick="cbModal2(<?=$result->id?>)">
+                 
+                 <button class="btn btn-info btn-sm " onclick="cbModal2(<?=$result->id?>)"><ion-icon name="create-outline"></ion-icon></button>
 							  </td>
               </tr>
                 <?php
@@ -110,6 +132,7 @@
                   <th>Alamat</th>
                   <th>Tanggal Pemesanan</th>
                   <th>Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -125,6 +148,7 @@
                 <td><?=$result->alamat?></td>
                 <td><?= date('Y-m-d H:i:s', strtotime($result->tglBuat) + (7 * 3600)) ?></td>
                 <td><span class="badge badge-success" style="color: white"><?=$result->status?></span></td>
+                <td> <button class="btn btn-danger btn-sm " onclick="cbModal(<?=$result->id?>)"><ion-icon name="trash-outline"></ion-icon></button></td>
               </tr>
                 <?php
                 $no++;
@@ -145,6 +169,7 @@
                   <th>Alamat</th>
                   <th>Tanggal Pemesanan</th>
                   <th>Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -160,6 +185,7 @@
                 <td><?=$result->alamat?></td>
                 <td><?= date('Y-m-d H:i:s', strtotime($result->tglBuat) + (7 * 3600)) ?></td>
                 <td><span class="badge badge-danger" style="color: white"><?=$result->status?></span></td>
+                <td> <button class="btn btn-danger btn-sm " onclick="cbModal(<?=$result->id?>)"><ion-icon name="trash-outline"></ion-icon></button></td>
               </tr>
                 <?php
                 $no++;
@@ -183,7 +209,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="formDelete" method="post">
-                        <input value="DELETE" type="hidden" name="_method" name="id">
                         <div class="modal-body">
                             <p>Are you sure want to delete this data?</p>
                         </div>

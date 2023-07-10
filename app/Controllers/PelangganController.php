@@ -53,6 +53,7 @@ class PelangganController extends BaseController
     }
      public function delPelanggan($id)
     {
+        
         $delPelanggan = $this->pelanggan->delete($id);
         $this->sesi->setFlashdata('sukses-hapus', 'Data berhasil di Hapus');
         return redirect()->to('/admin/pelanggan');
