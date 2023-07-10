@@ -44,6 +44,7 @@
                               <th class="text-center">Tanggal Ambil</th>
                               <th class="text-center">Tanggal Antar</th>
                               <th class="text-center">Jenis</th>
+                              <th class="text-center">Status Biaya</th>
                               <th class="text-center">Berat (Kg)</th>
                               <th class="text-center">Harga Laundry</th>
                               <th class="text-center">Biaya Ambil</th>
@@ -64,6 +65,7 @@
                                 <td><?=$value->tgl_jemput?></td>
                                 <td><?=$value->tgl_ambil?></td>
                                 <td><?=$value->jenis?></td>
+                                <td><?=$value->statusbiaya?></td>
                                 <td><?=$value->berat?></td>
                                 <td><?=$value->total?></td>
                                 <td><?=$value->biaya_jemput?></td>

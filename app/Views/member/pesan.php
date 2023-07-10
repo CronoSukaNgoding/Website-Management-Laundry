@@ -38,9 +38,22 @@
                         <label for="jabatan">Jenis Pakaian</label>
                         <select name="jenis" id="basicSelect" class="form-control">
                             <option value="" selected>Pilih Jenis Pakaian</option>
+                            <optgroup label="--Perkilo--">
                             <?php foreach($dataJenis as $jenis) : ?>
-                            <option value="<?= $jenis->idjenispakaian?>"><?= $jenis->jenis?>, <?=$jenis->statusbiaya?></option>
+                                <?php if($jenis->statusbiaya == "Perkilo"): ?>
+                                    <option value="<?= $jenis->idjenispakaian?>"><?= $jenis->jenis?>, <?=$jenis->statusbiaya?></option>
+                                <?php endif; ?>
                             <?php endforeach;?>
+                            </optgroup>
+                            
+                            <optgroup label="--Perpotong--">
+                                <?php foreach($dataJenis as $jenis) : ?>
+                                    <?php if($jenis->statusbiaya == "Perpotong"): ?>
+                                        <option value="<?= $jenis->idjenispakaian?>"><?= $jenis->jenis?>, <?=$jenis->statusbiaya?></option>
+                                    <?php endif; ?>
+                                <?php endforeach;?>
+                            </optgroup>
+                            
                         </select>
                     </div>
                     <input type="submit" class="btn btn-primary btn-bg-gradient-x-blue-cyan" name="simpan"
